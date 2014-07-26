@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.2'
+gem 'rails', '4.1.4'
 # Use sqlite3 as the database for Active Record
 #gem 'sqlite3'
 # Use PostrgreSQL as the database for Active Record
@@ -32,10 +32,20 @@ gem 'spring',        group: :development
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+ gem 'unicorn'
 
 # Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+group :development do
+  # Use Capistrano for deployment
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano3-unicorn'
+  gem 'capistrano-rvm'
+
+  gem "better_errors"
+  gem "binding_of_caller"
+end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
