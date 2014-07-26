@@ -1,0 +1,5 @@
+class Articulo < ActiveRecord::Base
+  validates :titulo, :presence > true
+  validates :clasificacion, :presence > true
+  validates :fecha, :presence > true
+end

@@ -1,0 +1,9 @@
+class CreateSentimientos < ActiveRecord::Migration
+  def change
+    create_table :sentimientos do |t|
+      t.string :sentimiento
+
+      t.timestamps
+    end
+  end
+end

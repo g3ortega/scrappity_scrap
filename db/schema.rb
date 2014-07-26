@@ -11,9 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20140726060507) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "articulos", force: true do |t|
+    t.string   "titulo",        null: false
+    t.string   "abstracto"
+    t.string   "contenido"
+    t.string   "clasificacion", null: false
+    t.datetime "fecha",         null: false
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sentimientos", force: true do |t|
+    t.string   "sentimiento", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
