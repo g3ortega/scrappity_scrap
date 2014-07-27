@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140726060507) do
+ActiveRecord::Schema.define(version: 20140727210346) do
 
   create_table "articulos", force: true do |t|
     t.string   "titulo",        null: false
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20140726060507) do
     t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "subtitulo"
   end
 
   create_table "sentimientos", force: true do |t|
