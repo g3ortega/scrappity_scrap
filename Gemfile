@@ -15,11 +15,16 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
-
+#Front-end
+gem 'almostfu'
+gem 'compass-rails'
+gem 'zurb-foundation', '~>4.0.0'
+#parser
 gem 'nokogiri'
-
 #Textalytics gem for text analysis
 gem 'textalytics'
+#Highcharts gem for charts
+gem 'highcharts-rails'
 
 gem 'rest-client', '1.6.7'
 # Use jquery as the JavaScript library
