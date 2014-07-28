@@ -11,12 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140728014145) do
+ActiveRecord::Schema.define(version: 20140728134923) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "articulos", force: true do |t|
     t.string   "titulo",        null: false
-    t.string   "abstracto"
-    t.string   "contenido"
+    t.text     "abstracto"
+    t.text     "contenido"
     t.string   "clasificacion", null: false
     t.date     "fecha",         null: false
     t.string   "url"
@@ -24,12 +28,8 @@ ActiveRecord::Schema.define(version: 20140728014145) do
     t.datetime "updated_at"
     t.string   "subtitulo"
     t.string   "sentimiento"
-  end
-
-  create_table "sentimientos", force: true do |t|
-    t.string   "sentimiento", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.hstore   "data"
+    t.hstore   "topics",                     array: true
   end
 
 end

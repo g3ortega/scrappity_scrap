@@ -1,6 +1,3 @@
-require 'nokogiri'
-require 'rest-client'
-
 namespace :retrieval do
 
   fecha_inicial = Date.new(2014, 05, 01)
@@ -25,18 +22,20 @@ namespace :retrieval do
   desc "Obtener contenido para articulos del último mes"
   task get_content: :environment do
 
-  end
-   Articulo.created_between(fecha_articulos_sentimiento, Articulo.last.fecha).each do |articulo|
+    Articulo.created_between(fecha_articulos_sentimiento, Articulo.last.fecha).each do |articulo|
       puts "Actualizando: #{articulo.titulo}"
       if articulo.contenido.nil?
         doc = Articulo.fetch_and_parse(articulo.url)
-        contenido = doc.css(".texto").text.gsub(/\r\n/,' ')
+        contenido = doc.css(".texto").text.gsub(/\r\n/,' ').split[0..500].join(" ")
         articulo.update(contenido: contenido )
       else
         puts "Actualizado"
       end
 
+    end
+
   end
+
 
 
 

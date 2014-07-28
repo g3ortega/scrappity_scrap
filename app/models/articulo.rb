@@ -1,5 +1,4 @@
 class Articulo < ActiveRecord::Base
-  has_one :sentimiento
 
   validates :titulo, presence: true, uniqueness: 'true'
   validates :clasificacion, presence: true
