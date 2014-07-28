@@ -1,9 +1,11 @@
 class Articulo < ActiveRecord::Base
   has_one :sentimiento
 
-  validates :titulo, :presence => true
-  validates :clasificacion, :presence => true
-  validates :fecha, :presence => true
+  validates :titulo, presence: true, uniqueness: 'true'
+  validates :clasificacion, presence: true
+  validates :fecha, presence: true
+
+  scope :created_between, lambda {|start_date, end_date| where("fecha >= ? AND fecha <= ?", start_date, end_date )}
 
 
   def self.save_general_data(init_date)
