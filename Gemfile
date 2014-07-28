@@ -17,7 +17,7 @@ gem 'coffee-rails', '~> 4.0.0'
 # gem 'therubyracer',  platforms: :ruby
 #Front-end
 gem 'almostfu'
-gem 'compass-rails'
+gem 'compass-rails', '~> 1.1.7'
 gem 'zurb-foundation', '~>4.0.0'
 #parser
 gem 'nokogiri'
