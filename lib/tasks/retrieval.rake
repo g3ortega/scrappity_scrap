@@ -1,7 +1,6 @@
 namespace :retrieval do
 
   fecha_inicial = Date.new(2014, 05, 01)
-  fecha_articulos_sentimiento = Date.new(2014, 07, 01)
 
 
   desc "Obtener los datos (exepto el contenido) de los articulos publicados desde la fecha inicial hasta la actual"
@@ -19,22 +18,6 @@ namespace :retrieval do
 
   end
 
-  desc "Obtener contenido para articulos del último mes"
-  task get_content: :environment do
-
-    Articulo.created_between(fecha_articulos_sentimiento, Articulo.last.fecha).each do |articulo|
-      puts "Actualizando: #{articulo.titulo}"
-      if articulo.contenido.nil?
-        doc = Articulo.fetch_and_parse(articulo.url)
-        contenido = doc.css(".texto").text.gsub(/\r\n/,' ').split[0..500].join(" ")
-        articulo.update(contenido: contenido )
-      else
-        puts "Actualizado"
-      end
-
-    end
-
-  end
 
 
 
