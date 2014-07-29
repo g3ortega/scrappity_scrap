@@ -32,7 +32,7 @@ class Articulo < ActiveRecord::Base
   end
 
 
-  def self.get_sentiment_data(terminos)
+  def self.get_sentiment_data_multiple(terminos)
     init_date = Articulo.first.fecha
     finish_date = Articulo.last.fecha
 
@@ -53,6 +53,28 @@ class Articulo < ActiveRecord::Base
           resultado[date.to_s][term][value] = Articulo.created_between(date, date+7).where("data ? '#{term}'").pluck(:sentimiento).count("#{value}")
         end
       end
+
+    end
+
+    resultado
+
+  end
+
+  def self.get_sentiment_data(termino)
+    init_date = Articulo.first.fecha
+    finish_date = Articulo.last.fecha
+
+    resultado = {}
+
+    (init_date..finish_date).step(7) do |date|
+
+      if resultado[date.to_s].nil?
+        resultado[date.to_s] = {}
+      end
+
+      VALUES_SENTIMENT.each do |value|
+          resultado[date.to_s][value] = Articulo.created_between(date, date+7).where("data ? '#{termino}'").pluck(:sentimiento).count("#{value}")
+        end
 
     end
 

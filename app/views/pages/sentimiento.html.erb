@@ -2,39 +2,69 @@
     $(function () {
         $('#container').highcharts({
             chart: {
-                type: 'column'
+                type: 'bar'
             },
             title: {
-                text: 'Sentimientos hacia el termino'
+                text: 'Buscar y Extrar sentimiento'
+            },
+            subtitle: {
+                text: 'Fuente: elnuevodiario.com.ni'
             },
             xAxis: {
-                categories: ['01/07 - 06/07', '07/07 - 13/07', '14/07 - 20/07', '21/07 - 27/07', '28/07 - 03/08']
+                categories: <%= raw @categories.as_json %>,
+                title: {
+                    text: null
+                }
             },
             yAxis: {
                 min: 0,
                 title: {
-                    text: 'Popularidad'
+                    text: 'Population (millions)',
+                    align: 'high'
+                },
+                labels: {
+                    overflow: 'justify'
                 }
             },
             tooltip: {
-                pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
-                shared: true
+                valueSuffix: ' millions'
             },
             plotOptions: {
-                column: {
-                    stacking: 'percent'
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
                 }
             },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                x: -40,
+                y: 100,
+                floating: true,
+                borderWidth: 1,
+                backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor || '#FFFFFF'),
+                shadow: true
+            },
+            credits: {
+                enabled: false
+            },
             series: [{
-                name: 'Chinkungunya',
-                data: [20, 30, 30, 70, 85]
-            },{
-                name: 'Dengue',
-                data: [40, 70, 30, 40, 60]
+                name: 'Muy Positivo',
+                data: [107, 31, 635, 203, 2]
+            }, {
+                name: 'Positivo',
+                data: [133, 156, 947, 408, 6]
+            }, {
+                name: 'Negativo',
+                data: [973, 914, 4054, 732, 34]
+            }, {
+                name: 'Muy Negativo',
+                data: [973, 914, 4054, 732, 34]
             }]
         });
     });
-
 
 </script>
 <%= render 'shared/menu' %>

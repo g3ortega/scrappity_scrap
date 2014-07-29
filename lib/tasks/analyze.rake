@@ -11,7 +11,7 @@ namespace :analyze do
 
       puts "Analizando: #{articulo.titulo}"
       if articulo.sentimiento.nil?
-        sleep 2
+        sleep 1
         sentiment = t_sentiment.sentiment(txt: articulo.abstracto, model: 'es-general')
         sentimiento = sentiment.score_tag
         articulo.update(sentimiento: sentimiento )
