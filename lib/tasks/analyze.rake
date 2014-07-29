@@ -11,6 +11,7 @@ namespace :analyze do
 
       puts "Analizando: #{articulo.titulo}"
       if articulo.sentimiento.nil?
+        sleep 3
         sentiment = t_sentiment.sentiment(txt: articulo.abstracto, model: 'es-general')
         sentimiento = sentiment.score_tag
         articulo.update(sentimiento: sentimiento )
@@ -29,6 +30,7 @@ namespace :analyze do
 
       puts "Analizando: #{articulo.titulo}"
       if articulo.data.nil?
+        sleep 3
         topics_hash = t_topics.topics(txt: articulo.abstracto, lang: 'es', model: 'es-general', tt: 'ec')
         topics = {}
 
