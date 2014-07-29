@@ -1,0 +1,63 @@
+<script type="text/javascript">
+    $(function () {
+        $('#container').highcharts({
+            title: {
+                text: 'Correlacion de terminos',
+                x: -20 //center
+            },
+            subtitle: {
+                text: 'Fuente: elnuevodiario.com.ni',
+                x: -20
+            },
+            xAxis: {
+                categories: <%= raw @topics.keys.as_json %>
+            },
+            yAxis: {
+                title: {
+                    text: 'Popularidad (%)'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                valueSuffix: '%'
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            },
+            series: [
+            <% @series.each do |key, value| %>
+            {
+              name: "<%= key %>",
+              data: <%= value %>
+            },
+            <% end %>
+
+             ]
+        });
+    });
+</script>
+<%= render 'shared/menu' %>
+
+<%= @series %>
+
+<h1>Bienvenido a Scrappity Scrap</h1>
+<h4>Este es el análisis de correlación de términos<br>donde podrás comparar varios términos a través de las semanas</h4>
+<h5><br>Instrucciones: Introduzca los terminos a correlacionar en el siguiente cuadro y separelos por coma.</h5>
+
+<%= form_tag root_path, :method => :get, :id => 'query-form', :class => 'form-inline' do %>
+    <div class="input-group">
+      <%= search_field_tag :q, params[:q], :maxlength => 10_000, :tabindex => 1, :class => "form-control" %>
+      <div class="input-group-btn">
+        <%= submit_tag submit_text, :id => "query-submit", :tabindex => 2, :class => "form-control btn btn-info" %>
+      </div>
+    </div>
+<% end %>
+
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>

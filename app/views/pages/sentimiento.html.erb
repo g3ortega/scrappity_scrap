@@ -1,0 +1,46 @@
+<script type="text/javascript">
+    $(function () {
+        $('#container').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Sentimientos hacia el termino'
+            },
+            xAxis: {
+                categories: ['01/07 - 06/07', '07/07 - 13/07', '14/07 - 20/07', '21/07 - 27/07', '28/07 - 03/08']
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Popularidad'
+                }
+            },
+            tooltip: {
+                pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
+                shared: true
+            },
+            plotOptions: {
+                column: {
+                    stacking: 'percent'
+                }
+            },
+            series: [{
+                name: 'Chinkungunya',
+                data: [20, 30, 30, 70, 85]
+            },{
+                name: 'Dengue',
+                data: [40, 70, 30, 40, 60]
+            }]
+        });
+    });
+
+
+</script>
+<%= render 'shared/menu' %>
+
+<h4>Este es el análisis de sentimientos y moda de termino<br>donde podrás observar el sentir general sobre un concepto o persona</h4>
+<h5><br>Instrucciones: Introduzca los terminos a correlacionar en el siguiente cuadro y separelos por coma.</h5>
+<%= render 'form' %>
+
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
