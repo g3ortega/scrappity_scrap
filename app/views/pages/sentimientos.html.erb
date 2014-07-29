@@ -1,45 +1,41 @@
 <script type="text/javascript">
 $(function () {
   $('#container').highcharts({
-    title: {
-      text: 'Correlacion de terminos [Rosario Murillo - Fifa]',
-      x: -20 //center
+    chart: {
+      type: 'column'
     },
-    subtitle: {
-      text: 'Fuente: elnuevodiario.com.ni',
-      x: -20
+    title: {
+      text: 'Sentimientos hacia el termino'
     },
     xAxis: {
-      categories: ['01/05 - 04/05 ', '05/05 - 11/05', '12/05 - 18/05', '19/05 - 25/05', '26/05 - 1/06']
+      categories: ['01/07 - 06/07', '07/07 - 13/07', '14/07 - 20/07', '21/07 - 27/07', '28/07 - 03/08']
     },
     yAxis: {
+      min: 0,
       title: {
-        text: 'Popularidad (%)'
-      },
-      plotLines: [{
-        value: 0,
-        width: 1,
-        color: '#808080'
-      }]
+        text: 'Popularidad'
+      }
     },
     tooltip: {
-      valueSuffix: '%'
+      pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
+      shared: true
     },
-    legend: {
-      layout: 'vertical',
-      align: 'right',
-      verticalAlign: 'middle',
-      borderWidth: 0
+    plotOptions: {
+      column: {
+        stacking: 'percent'
+      }
     },
     series: [{
-      name: 'Rosario Murillo',
-      data: [70, 69, 95, 63, 71]
+      name: 'Chinkungunya',
+      data: [20, 30, 30, 70, 85]
     },{
-      name: 'Fifa',
-      data: [60, 65, 35, 84, 95]
+      name: 'Dengue',
+      data: [40, 70, 30, 40, 60]
     }]
   });
 });
+
+
 </script>
 <nav class="top-bar" data-topbar="">
   <ul class="title-area">
@@ -56,15 +52,14 @@ $(function () {
     <!-- Right Nav Section -->
     <ul class="right">
       <li class="divider hide-for-small"></li>
-      <li><a href="#">Correlacion de terminos</a></li>
+      <li><a href="/">Correlacion de terminos</a></li>
       <li class="divider hide-for-small"></li>
-      <li><a href="pages/sentimientos">Sentimientos por termino</a></li>
+      <li><a href="#">Sentimientos por termino</a></li>
     </ul>
   </section>
 </nav>
 
-<h1>Bienvenido a Scrappity Scrap</h1>
-<h4>Este es el análisis de correlación de términos<br>donde podrás comparar varios términos a través de las semanas</h4>
+<h4>Este es el análisis de sentimientos y moda de termino<br>donde podrás observar el sentir general sobre un concepto o persona</h4>
 <h5><br>Instrucciones: Introduzca los terminos a correlacionar en el siguiente cuadro y separelos por coma.</h5>
 <%= render 'form' %>
 
