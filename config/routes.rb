@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
-  get 'pages/sentimiento', as: :sentiment
+  get '/sentimiento' => 'pages#sentimiento'  , as: :sentiment
 
-  get 'pages/query' => 'pages#query', as: :query
+  # get 'pages/query' => 'pages#query', as: :query
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -4,7 +4,7 @@ class Articulo < ActiveRecord::Base
   validates :clasificacion, presence: true
   validates :fecha, presence: true
 
-  VALUES_SENTIMENT = ['N', 'N+', 'P', 'P+']
+  VALUES_SENTIMENT = ['N+', 'N', 'P+', 'P']
 
   scope :created_between, lambda {|start_date, end_date| where("fecha >= ? AND fecha <= ?", start_date, end_date )}
 

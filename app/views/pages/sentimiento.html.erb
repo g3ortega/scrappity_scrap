@@ -19,7 +19,7 @@
             yAxis: {
                 min: 0,
                 title: {
-                    text: 'Population (millions)',
+                    text: 'Encontrados',
                     align: 'high'
                 },
                 labels: {
@@ -27,7 +27,7 @@
                 }
             },
             tooltip: {
-                valueSuffix: ' millions'
+                valueSuffix: ' encontrados'
             },
             plotOptions: {
                 bar: {
@@ -50,27 +50,29 @@
             credits: {
                 enabled: false
             },
-            series: [{
-                name: 'Muy Positivo',
-                data: [107, 31, 635, 203, 2]
-            }, {
-                name: 'Positivo',
-                data: [133, 156, 947, 408, 6]
-            }, {
-                name: 'Negativo',
-                data: [973, 914, 4054, 732, 34]
-            }, {
-                name: 'Muy Negativo',
-                data: [973, 914, 4054, 732, 34]
-            }]
+            series: [
+                <% @series.each do |key, value| %>
+                {
+                    name: "<%= key %>",
+                    data: <%= value %>
+                },
+                <% end %>
+            ]
         });
     });
 
 </script>
 <%= render 'shared/menu' %>
+<h5 class="subheader">Con el análisis de sentimiento puedes determinar si se hablo bien o mal de un tema especifico, con datos desde hace  <%= time_ago_in_words(Articulo.first.fecha) %></h4>
+  <h5>Instrucciones: </h5> <h5 class="subheader">Introduzca el termino que deseas se analice sentimiento.</h5>
 
-<h4>Este es el análisis de sentimientos y moda de termino<br>donde podrás observar el sentir general sobre un concepto o persona</h4>
-<h5><br>Instrucciones: Introduzca los terminos a correlacionar en el siguiente cuadro y separelos por coma.</h5>
-<%= render 'form' %>
+<%= form_tag sentiment_path, :method => :get, :id => 'query-form', :class => 'form-inline' do %>
+    <div class="input-group">
+      <%= search_field_tag :q, params[:q], :maxlength => 10_000, :tabindex => 1, :class => "form-control" %>
+      <div class="input-group-btn">
+        <%= submit_tag "Buscar en término!", :id => "query-submit", :tabindex => 2, :class => "form-control btn btn-info" %>
+      </div>
+    </div>
+<% end %>
 
-<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+<div id="container" style="min-width: 310px; height: 800px; margin: 0 auto"></div>
